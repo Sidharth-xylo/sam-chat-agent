@@ -5,7 +5,7 @@
   --red-mid:     #ca3210;
   --red-acc:     #e84825;
   --orange-acc:  #d26438;
-  --bg:          #0a0d14;
+  --bg:          #f5e6e0;
   --border:      rgba(255,255,255,0.1);
   --text:        #f1f5f9;
   --text-dim:    #94a3b8;
@@ -21,13 +21,13 @@ html, body, #root {
   overflow: hidden;
 }
 
-/* Sports background — inside the shell */
+/* Sports background */
 .bg-wrap {
   position: absolute; inset: 0;
   overflow: hidden;
   z-index: 0;
   border-radius: 24px;
-   background: #fdf6f0;
+  background: #fdf6f0;
 }
 
 .sports-icon {
@@ -47,7 +47,6 @@ html, body, #root {
   100% { transform: translateY(0px) rotate(0deg); opacity: 0.12; }
 }
 
-/* Court lines */
 .court-lines {
   position: absolute; inset: 0;
   background-image:
@@ -73,7 +72,6 @@ html, body, #root {
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(202,50,16,0.25);
-  backdrop-filter: blur(20px);
   box-shadow: var(--shadow), 0 0 0 1px rgba(202,50,16,0.15);
   background: rgba(10,10,18,0.88);
 }
@@ -103,8 +101,7 @@ html, body, #root {
 
 .header-logo {
   width: 44px; height: 44px;
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: 12px; overflow: hidden;
   background: rgba(255,255,255,0.15);
   display: flex; align-items: center; justify-content: center;
   border: 1px solid rgba(255,255,255,0.25);
@@ -113,7 +110,6 @@ html, body, #root {
 
 .header-logo img { width: 100%; height: 100%; object-fit: cover; }
 .header-logo-fallback { font-size: 24px; }
-
 .header-info { flex: 1; }
 
 .header-info h2 {
@@ -126,8 +122,7 @@ html, body, #root {
 
 .online-pip {
   width: 8px; height: 8px;
-  background: #4ade80;
-  border-radius: 50%;
+  background: #4ade80; border-radius: 50%;
   box-shadow: 0 0 8px #4ade80;
   animation: pulse 2s infinite;
 }
@@ -139,8 +134,10 @@ html, body, #root {
 
 /* Messages */
 .messages {
-  flex: 1; overflow-y: auto;
-  padding: 16px 14px;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 12px;
   display: flex; flex-direction: column; gap: 10px;
   background: transparent;
   position: relative; z-index: 1;
@@ -148,8 +145,14 @@ html, body, #root {
 
 .messages::-webkit-scrollbar { width: 3px; }
 .messages::-webkit-scrollbar-thumb { background: rgba(202,50,16,0.25); border-radius: 3px; }
+
 /* Bubbles */
-.row-a { display: flex; align-items: flex-end; gap: 8px; }
+.row-a {
+  display: flex; align-items: flex-end; gap: 8px;
+  /* prevent agent rows from overflowing */
+  min-width: 0;
+  max-width: 100%;
+}
 .row-u { display: flex; justify-content: flex-end; }
 
 .av {
@@ -161,7 +164,7 @@ html, body, #root {
   border: 1px solid rgba(202,50,16,0.4);
 }
 
-.bwrap { display: flex; flex-direction: column; gap: 3px; max-width: 82%; }
+.bwrap { display: flex; flex-direction: column; gap: 3px; max-width: 75%; min-width: 0; }
 .bwrap.u { align-items: flex-end; }
 
 .bbl { padding: 10px 14px; font-size: 13.5px; line-height: 1.55; word-break: break-word; }
@@ -196,8 +199,12 @@ html, body, #root {
 .dot:nth-child(3){ animation-delay:.4s; }
 @keyframes bnc { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
 
-/* Slot grid */
-.slots-wrap { max-width: 300px; width: 100%; }
+/* Slot wrap — fills space after avatar */
+.slots-wrap {
+  flex: 1;
+  min-width: 0;
+  max-width: calc(100% - 36px); /* 28px avatar + 8px gap */
+}
 
 .slots-lbl {
   font-size: 10px; font-weight: 700;
@@ -205,12 +212,19 @@ html, body, #root {
   text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
 }
 
-.slots-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 10px; }
+/* 2 columns, tiles fill the available width */
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
 
 .stile {
   background: rgba(255,255,255,0.96);
   border: 2px solid #e2e8f0; border-radius: 10px;
   padding: 9px 4px; text-align: center; cursor: pointer; transition: all 0.15s;
+  min-width: 0;
 }
 
 .stile:hover { border-color: var(--red-acc); background: #fff5f3; transform: translateY(-1px); }
@@ -230,10 +244,48 @@ html, body, #root {
 .sconfirm:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(126,22,8,0.55); }
 .sconfirm:disabled { background: #64748b; cursor: not-allowed; box-shadow: none; }
 
+/* Period tabs */
+.period-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.period-tab {
+  background: rgba(255,255,255,0.9);
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 7px 6px;
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+  min-width: 0;
+}
+
+.period-tab:hover { border-color: var(--red-acc); background: #fff5f3; transform: translateY(-1px); }
+.period-tab.active { border-color: var(--red-dark); background: #ffe4de; }
+
+.period-icon { font-size: 16px; line-height: 1; }
+
+.period-name {
+  font-size: 11px; font-weight: 700;
+  color: #1a1a1a; line-height: 1.2;
+}
+
+.period-range {
+  font-size: 9px; color: #888; line-height: 1.2;
+}
+
+.period-tab.active .period-name { color: var(--red-dark); }
+.period-tab.active .period-range { color: var(--red-mid); }
+
 /* Form card */
 .form-card {
   background: rgba(255,255,255,0.97);
-  border-radius: 16px; padding: 16px; max-width: 300px;
+  border-radius: 16px; padding: 16px;
+  max-width: 280px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.25);
   border: 1px solid rgba(202,50,16,0.2);
 }
@@ -330,10 +382,13 @@ html, body, #root {
   border: 1px solid rgba(255,255,255,0.3); border-radius: 22px;
   padding: 11px 16px; font-size: 14px; font-family: 'DM Sans',sans-serif;
   color: #fff; outline: none; resize: none;
+  max-height: 100px; overflow-y: auto; line-height: 1.4;
+  transition: border-color 0.15s;
 }
 
 .ibox::placeholder { color: rgba(255,255,255,0.55); }
 .ibox:focus { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.2); }
+
 .sbtn {
   width: 44px; height: 44px;
   background: linear-gradient(135deg, var(--red-dark), var(--red-acc));
@@ -345,3 +400,121 @@ html, body, #root {
 
 .sbtn:hover:not(:disabled) { transform: scale(1.08); box-shadow: 0 6px 16px rgba(202,50,16,0.6); }
 .sbtn:disabled { background: #334155; cursor: not-allowed; box-shadow: none; }
+
+/* Fully booked period tab */
+.period-tab.empty {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(255,255,255,0.5);
+}
+
+.period-tab.empty:hover {
+  transform: none;
+  border-color: #e2e8f0;
+  background: rgba(255,255,255,0.5);
+}
+
+.period-full {
+  font-size: 8px;
+  font-weight: 700;
+  color: #e11d48;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
+/* ── Choice tiles (Sports / Venues / Courts) ─────────────────── */
+
+.tile-wrap {
+  flex: 1;
+  min-width: 0;
+  max-width: calc(100% - 36px);
+}
+
+.tile-lbl {
+  font-size: 10px; font-weight: 700;
+  color: var(--red-acc);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.tile-grid {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 4px;
+}
+
+.tile-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.tile-grid-1 { grid-template-columns: 1fr; }
+
+.choice-tile {
+  background: rgba(255,255,255,0.95);
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+  text-align: center;
+  min-width: 0;
+}
+
+.choice-tile:hover {
+  border-color: var(--red-acc);
+  background: #fff5f3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(126,22,8,0.15);
+}
+
+.choice-tile:active { transform: translateY(0); }
+
+/* Wide tile (for venues — 1 column) */
+.choice-tile-wide {
+  flex-direction: row;
+  text-align: left;
+  padding: 12px 14px;
+  gap: 12px;
+}
+
+.choice-tile-wide .choice-text {
+  display: flex; flex-direction: column; gap: 2px;
+  min-width: 0; flex: 1;
+}
+
+.choice-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+
+.choice-name {
+  font-size: 12px; font-weight: 700;
+  color: #1a1a1a; line-height: 1.3;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.choice-sub {
+  font-size: 10px; color: #888;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ── Fully booked period tab ──────────────────────────────────── */
+
+.period-tab.empty {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(255,255,255,0.5);
+}
+
+.period-tab.empty:hover {
+  transform: none;
+  border-color: #e2e8f0;
+  background: rgba(255,255,255,0.5);
+}
+
+.period-full {
+  font-size: 8px; font-weight: 700;
+  color: #e11d48;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-top: 1px;
+}
