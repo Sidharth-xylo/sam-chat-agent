@@ -435,12 +435,12 @@ html, body, #root {
   font-size: 10px; font-weight: 700;
   color: var(--red-acc);
   text-transform: uppercase; letter-spacing: 1px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .tile-grid {
   display: grid;
-  gap: 7px;
+  gap: 6px;
   margin-bottom: 4px;
 }
 
@@ -450,13 +450,13 @@ html, body, #root {
 .choice-tile {
   background: rgba(255,255,255,0.95);
   border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 12px 8px;
+  border-radius: 10px;
+  padding: 10px 8px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   transition: all 0.15s;
   font-family: 'DM Sans', sans-serif;
   text-align: center;
@@ -476,8 +476,8 @@ html, body, #root {
 .choice-tile-wide {
   flex-direction: row;
   text-align: left;
-  padding: 12px 14px;
-  gap: 12px;
+  padding: 10px 12px;
+  gap: 10px;
 }
 
 .choice-tile-wide .choice-text {
@@ -485,16 +485,26 @@ html, body, #root {
   min-width: 0; flex: 1;
 }
 
-.choice-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.choice-icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: rgba(202,50,16,0.10);
+  color: var(--red-dark);
+  border: 1px solid rgba(202,50,16,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; line-height: 1;
+  letter-spacing: 0.4px;
+  flex-shrink: 0;
+}
 
 .choice-name {
-  font-size: 12px; font-weight: 700;
-  color: #1a1a1a; line-height: 1.3;
+  font-size: 11.5px; font-weight: 700;
+  color: #1a1a1a; line-height: 1.25;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
 .choice-sub {
-  font-size: 10px; color: #888;
+  font-size: 9.5px; color: #888;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 

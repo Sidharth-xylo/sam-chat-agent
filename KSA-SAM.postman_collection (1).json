@@ -1,0 +1,416 @@
+{
+  "info": {
+    "_postman_id": "34b939b4-4515-422a-b0fb-8d2f911a1c21",
+    "name": "KSA-SAM",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37071281"
+  },
+  "item": [
+    {
+      "name": "AUTH",
+      "item": [
+        {
+          "name": "REGISTER",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Nishanth M\",\r\n  \"email\": \"maskoff9988@gmail.com\",\r\n  \"mobile\": \"9080157234\",\r\n  \"password\": \"Welcome@123\",\r\n  \"pinCode\": \"641040\",\r\n  \"city\": \"Namakkal\",\r\n  \"state\": \"Tamil Nadu\",\r\n  \"country\": \"India\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/auth/register",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SEND-OTP",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"maskoff9988@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/auth/send-otp",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "send-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "VERIFY-OTP",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"email\": \"maskoff9988@gmail.com\",\r\n  \"otp\": \"232029\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/auth/verify-otp",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "verify-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LOGIN",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"maskoff9988@gmail.com\",\r\n    \"password\": \"Welcome@123\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/auth/login",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "VENUE",
+      "item": [
+        {
+          "name": "New Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJuYW1lIjoiTmlzaGFudGggTSIsImVtYWlsIjoibWFza29mZjk5ODhAZ21haWwuY29tIiwicm9sZSI6Ik5PTk1FTUJFUiIsIm1vYmlsZSI6Ijk5OTk5OTk5OTkiLCJpc1ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE3NzMxMTk3OTQsImV4cCI6MTc3MzU1MTc5NH0.DT6kd2JcR7-SFfSkcuLVc7SiM_gdmPDTS3smbNMAw8g",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/venues",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "venues"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SPORTS",
+      "item": [
+        {
+          "name": "New Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJuYW1lIjoiTmlzaGFudGggTSIsImVtYWlsIjoibWFza29mZjk5ODhAZ21haWwuY29tIiwicm9sZSI6Ik5PTk1FTUJFUiIsIm1vYmlsZSI6Ijk5OTk5OTk5OTkiLCJpc1ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE3NzMxMTk3OTQsImV4cCI6MTc3MzU1MTc5NH0.DT6kd2JcR7-SFfSkcuLVc7SiM_gdmPDTS3smbNMAw8g",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/sports/by-venue?venueId=3",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "sports",
+                "by-venue"
+              ],
+              "query": [
+                {
+                  "key": "venueId",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "COURTS",
+      "item": [
+        {
+          "name": "New Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJuYW1lIjoiTmlzaGFudGggTSIsImVtYWlsIjoibWFza29mZjk5ODhAZ21haWwuY29tIiwicm9sZSI6Ik5PTk1FTUJFUiIsIm1vYmlsZSI6Ijk5OTk5OTk5OTkiLCJpc1ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE3NzMxMTk3OTQsImV4cCI6MTc3MzU1MTc5NH0.DT6kd2JcR7-SFfSkcuLVc7SiM_gdmPDTS3smbNMAw8g",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/courts/sport/9",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "courts",
+                "sport",
+                "9"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SLOTS",
+      "item": [
+        {
+          "name": "Get A Slots ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJuYW1lIjoiTmlzaGFudGggTSIsImVtYWlsIjoibWFza29mZjk5ODhAZ21haWwuY29tIiwicm9sZSI6Ik5PTk1FTUJFUiIsIm1vYmlsZSI6Ijk5OTk5OTk5OTkiLCJpc1ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE3NzMxMjIwNzUsImV4cCI6MTc3MzU1NDA3NX0.2NFG96zTSLZf2CFXKvTUB2D8Osz5kl6FSZfdjBzJqRs",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/slots?sportId=7&courtId=9&date=2026-03-08&venueId=3",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "slots"
+              ],
+              "query": [
+                {
+                  "key": "sportId",
+                  "value": "7"
+                },
+                {
+                  "key": "courtId",
+                  "value": "9"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-03-08"
+                },
+                {
+                  "key": "venueId",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "BOOKINGS",
+      "item": [
+        {
+          "name": "CREATE BOOKING",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJuYW1lIjoiTmlzaGFudGggTSIsImVtYWlsIjoibWFza29mZjk5ODhAZ21haWwuY29tIiwicm9sZSI6Ik5PTk1FTUJFUiIsIm1vYmlsZSI6Ijk5OTk5OTk5OTkiLCJpc1ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE3NzMxMjIwNzUsImV4cCI6MTc3MzU1NDA3NX0.2NFG96zTSLZf2CFXKvTUB2D8Osz5kl6FSZfdjBzJqRs",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\": 18,\r\n  \"slotIds\": [3572],\r\n  \"bookedFor\": \"self\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/bookings/book-now",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "bookings",
+                "book-now"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "VERIFY-PAYMENT",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJuYW1lIjoiTmlzaGFudGggTSIsImVtYWlsIjoibWFza29mZjk5ODhAZ21haWwuY29tIiwicm9sZSI6Ik5PTk1FTUJFUiIsIm1vYmlsZSI6Ijk5OTk5OTk5OTkiLCJpc1ZlcmlmaWVkIjp0cnVlLCJpYXQiOjE3NzMxMjIwNzUsImV4cCI6MTc3MzU1NDA3NX0.2NFG96zTSLZf2CFXKvTUB2D8Osz5kl6FSZfdjBzJqRs",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"razorpay_order_id\": \"order_SPQEnNCGtPNOPc\",\r\n  \"razorpay_payment_id\": \"pay_test_123456\",\r\n  \"razorpay_signature\": \"6e1e9b6a4f2bdb1c21a07c1c7d2a0a1d9d...\",\r\n  \"paymentMethod\": \"razorpay\"\r\n}"
+            },
+            "url": {
+              "raw": "https://sam-be.idzone.app/api/v2/bookings/verify-payment",
+              "protocol": "https",
+              "host": [
+                "sam-be",
+                "idzone",
+                "app"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "bookings",
+                "verify-payment"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

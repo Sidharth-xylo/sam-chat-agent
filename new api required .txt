@@ -1,0 +1,41 @@
+For the future chatbot-only auth flow, these are the APIs I’d ask the backend team for:
+
+POST /chatbot/auth/register/start
+Input: name, email, mobile
+Output: pendingRegistrationId, otpSent
+Purpose: start registration without creating the final user yet.
+
+POST /chatbot/auth/register/verify-otp
+Input: pendingRegistrationId, otp
+Output: verifiedRegistrationToken
+Purpose: confirm the user is real, but still keep them out of the main user table until payment succeeds.
+
+POST /chatbot/bookings/create-intent
+Input: venue/sport/date/time/slot selection plus verifiedRegistrationToken or existing logged-in identity
+Output: booking intent id, payment order data
+Purpose: reserve the chatbot flow before final account creation.
+
+POST /chatbot/payments/confirm-and-finalize
+Input: booking intent id, payment confirmation payload
+Output: created user, created booking, login token or credentials-sent flag
+Purpose: only after successful payment, create the user in DB, create the booking, and trigger the email.
+
+POST /chatbot/auth/login/password
+Input: email, password
+Output: auth token, user profile
+Purpose: chatbot-specific email/password login.
+
+POST /chatbot/auth/login/otp/start
+Input: mobile
+Output: loginOtpId, otpSent
+Purpose: start mobile OTP login.
+
+POST /chatbot/auth/login/otp/verify
+Input: loginOtpId, otp
+Output: auth token, user profile
+Purpose: complete mobile OTP login.
+
+POST /chatbot/auth/send-welcome-credentials
+Input: userId
+Output: sent: true
+Purpose: email the generated temporary password or, better, a set-password link.

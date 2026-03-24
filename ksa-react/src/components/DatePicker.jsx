@@ -4,19 +4,20 @@ const toDate = (offset = 0) => new Date(Date.now() + offset * 86400000).toISOStr
 
 export default function DatePicker({ onPick }) {
   const [custom, setCustom] = useState('');
+
   return (
     <div className="row-a" style={{ alignItems: 'flex-start' }}>
-      <div className="av" style={{ marginTop: 6 }}>🤖</div>
+      <div className="av" style={{ marginTop: 6 }}>AI</div>
       <div className="tile-wrap">
-        <div className="tile-lbl">📅 Pick a date</div>
+        <div className="tile-lbl">Pick a date</div>
         <div className="tile-grid tile-grid-2" style={{ marginBottom: 8 }}>
           <button className="choice-tile" onClick={() => onPick(toDate(0))}>
-            <span className="choice-icon">📅</span>
+            <span className="choice-icon">TD</span>
             <span className="choice-name">Today</span>
             <span className="choice-sub">{toDate(0)}</span>
           </button>
           <button className="choice-tile" onClick={() => onPick(toDate(1))}>
-            <span className="choice-icon">🌅</span>
+            <span className="choice-icon">TM</span>
             <span className="choice-name">Tomorrow</span>
             <span className="choice-sub">{toDate(1)}</span>
           </button>
@@ -28,7 +29,7 @@ export default function DatePicker({ onPick }) {
             style={{ flex: 1, fontSize: 12 }}
             min={toDate(0)}
             value={custom}
-            onChange={e => setCustom(e.target.value)}
+            onChange={(event) => setCustom(event.target.value)}
           />
           <button
             className="sconfirm"
