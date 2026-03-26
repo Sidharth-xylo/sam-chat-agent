@@ -12,12 +12,12 @@ export default function DatePicker({ onPick }) {
         <div className="tile-lbl">Pick a date</div>
         <div className="tile-grid tile-grid-2" style={{ marginBottom: 8 }}>
           <button className="choice-tile" onClick={() => onPick(toDate(0))}>
-            <span className="choice-icon">TD</span>
+            <span className="choice-icon">📅</span>
             <span className="choice-name">Today</span>
             <span className="choice-sub">{toDate(0)}</span>
           </button>
           <button className="choice-tile" onClick={() => onPick(toDate(1))}>
-            <span className="choice-icon">TM</span>
+            <span className="choice-icon">➡️</span>
             <span className="choice-name">Tomorrow</span>
             <span className="choice-sub">{toDate(1)}</span>
           </button>

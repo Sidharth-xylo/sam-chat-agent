@@ -12,7 +12,7 @@ export default function VenueGrid({ venues = [], onPick }) {
                 className="choice-tile choice-tile-wide"
                 onClick={() => onPick(venue)}
               >
-                <span className="choice-icon">VN</span>
+                <span className="choice-icon">🏟️</span>
                 <div className="choice-text">
                   <span className="choice-name">{venue.name}</span>
                   {venue.city && <span className="choice-sub">{venue.city}</span>}

@@ -1,11 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 
 const PERIODS = [
-  { key: 'all', label: 'All Day', icon: 'ALL', range: 'All slots' },
-  { key: 'morning', label: 'Morning', icon: 'AM', range: '4AM to 11AM' },
-  { key: 'afternoon', label: 'Afternoon', icon: 'PM', range: '11AM to 4PM' },
-  { key: 'evening', label: 'Evening', icon: 'EV', range: '4PM to 8PM' },
-  { key: 'night', label: 'Night', icon: 'NT', range: '8PM onwards' },
+  { key: 'all', label: 'All Day', icon: '🕐', range: 'All slots' },
+  { key: 'morning', label: 'Morning', icon: '🌅', range: '4AM to 11AM' },
+  { key: 'afternoon', label: 'Afternoon', icon: '☀️', range: '11AM to 4PM' },
+  { key: 'evening', label: 'Evening', icon: '🌅', range: '4PM to 8PM' },
+  { key: 'night', label: 'Night', icon: '🌙', range: '8PM onwards' },
 ];
 
 function getHour(timeStr = '') {

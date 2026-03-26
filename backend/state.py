@@ -127,18 +127,32 @@ def apply_picker_event_to_state(
         clear_keys(updated, ("_pendingVenues", "_pendingSports", "_pendingCourts", "_pendingSlots"))
 
     elif event_type == "sport":
-        sport_id = int(event["sportId"])
-        if updated.get("sportId") != sport_id:
+        sport_name = event.get("name")
+        if sport_name:
+            updated["desiredSportQuery"] = sport_name
+
+        sport_id = event.get("sportId")
+        if sport_id is None:
             clear_keys(
                 updated,
                 (
+                    "sportId", "sport",
                     "courtId", "court", "slotId", "slotTime",
                     "slotCourtId", "slotPrice", "_slotCourts", "_paymentData", "_courtsVerified",
                 ),
             )
-        updated["sportId"] = sport_id
-        updated["sport"] = event.get("name")
-        updated["desiredSportQuery"] = event.get("name")
+        else:
+            sport_id = int(sport_id)
+            if updated.get("sportId") != sport_id:
+                clear_keys(
+                    updated,
+                    (
+                        "courtId", "court", "slotId", "slotTime",
+                        "slotCourtId", "slotPrice", "_slotCourts", "_paymentData", "_courtsVerified",
+                    ),
+                )
+            updated["sportId"] = sport_id
+            updated["sport"] = sport_name
         clear_keys(updated, ("_pendingSports", "_pendingCourts", "_pendingSlots"))
 
     elif event_type == "court":

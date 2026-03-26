@@ -1,16 +1,16 @@
 const LABELS = {
-  wooden: 'Wood',
-  synthetic: 'Synthetic',
-  concrete: 'Concrete',
-  grass: 'Grass',
-  clay: 'Clay',
-  indoor: 'Indoor',
-  outdoor: 'Outdoor',
+  wooden: '🪵',
+  synthetic: '🏗️',
+  concrete: '🏗️',
+  grass: '🌱',
+  clay: '🧱',
+  indoor: '🏠',
+  outdoor: '🌤️',
 };
 
 const getIcon = (type = '') => {
-  const label = LABELS[type.toLowerCase()] || 'Court';
-  return label.slice(0, 2).toUpperCase();
+  const key = type.toLowerCase();
+  return LABELS[key] || '🏟️';
 };
 
 export default function CourtGrid({ courts = [], selectedCourtId, onPick }) {

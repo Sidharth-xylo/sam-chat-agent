@@ -57,7 +57,6 @@ export default function App() {
   const slotRef = useRef(null);
   const dateRef = useRef(null);
   const courtsRef = useRef([]);
-  const venueAutofollowRef = useRef(false);
 
   useEffect(() => {
     sidRef.current = null;
@@ -78,9 +77,7 @@ export default function App() {
 
   const push = (msg) => setMsgs((prev) => [...prev, { ...msg, time: nowStr() }]);
 
-  const requestAgent = async (payload, displayMsg, options = {}) => {
-    const { isSilentVenueFollowup = false } = options;
-
+  const requestAgent = async (payload, displayMsg) => {
     try {
       const { reply, sessionId } = await askAgent({
         ...payload,
@@ -127,22 +124,6 @@ export default function App() {
         text: reply.message || '',
         ui: reply.ui || { type: 'text', data: null },
       });
-
-      const shouldAutofollowVenues =
-        !payload.pickerEvent &&
-        reply?.ui?.type === 'text' &&
-        !venueRef.current?.venueId &&
-        !venueAutofollowRef.current &&
-        !isSilentVenueFollowup;
-
-      if (shouldAutofollowVenues) {
-        venueAutofollowRef.current = true;
-        try {
-          await requestAgent({ pickerEvent: { type: 'show_venues' } }, null, { isSilentVenueFollowup: true });
-        } finally {
-          venueAutofollowRef.current = false;
-        }
-      }
     } catch (error) {
       push({
         role: 'agent',
@@ -196,7 +177,15 @@ export default function App() {
 
   const onSportPick = (sport) => {
     sportRef.current = sport;
-    sendPickerEvent({ type: 'sport', sportId: sport.id, name: sport.name }, sport.name);
+    const hasSelectedVenue = Boolean(venueRef.current?.venueId);
+    sendPickerEvent(
+      {
+        type: 'sport',
+        name: sport.name,
+        ...(hasSelectedVenue && sport.id ? { sportId: sport.id } : {}),
+      },
+      sport.name
+    );
   };
 
   const onCourtPick = (court) => {
@@ -307,7 +296,7 @@ export default function App() {
               <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {message.text && (
                   <div className="row-a">
-                    <div className="av">AI</div>
+                    <div className="av">🤖</div>
                     <div className="bwrap">
                       <div className="bbl a" dangerouslySetInnerHTML={{ __html: fmt(message.text) }} />
                       <span className="bt">{message.time}</span>
@@ -359,7 +348,7 @@ export default function App() {
 
           {busy && (
             <div className="row-a">
-              <div className="av">AI</div>
+              <div className="av">🤖</div>
               <div className="typing-bbl">
                 <div className="dot" />
                 <div className="dot" />
@@ -380,11 +369,12 @@ export default function App() {
             onChange={onInp}
             onKeyDown={onKey}
           />
-          <button className="sbtn" onClick={() => handleSend()} disabled={busy || !input.trim()}>
-            {'>'}
+          <button className="sbtn" onClick={() => handleSend()} disabled={busy || !input.trim()} title="Send message">
+            {busy ? '⏳' : '📤'}
           </button>
         </div>
       </div>
     </div>
   );
 }
+

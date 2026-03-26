@@ -63,6 +63,10 @@ async def ensure_sports(
     return await api_client.get_sports_by_venue(venue_id)
 
 
+async def ensure_all_sports(api_client: ApiClient) -> list[dict[str, Any]] | dict[str, Any]:
+    return await api_client.get_all_sports()
+
+
 async def ensure_courts(
     api_client: ApiClient, sport_id: int
 ) -> list[dict[str, Any]] | dict[str, Any]:
@@ -86,7 +90,7 @@ def booking_is_active(state: dict[str, Any], extraction: dict[str, Any]) -> bool
         state.get(key)
         for key in (
             "venueId", "sportId", "courtId", "date",
-            "timeOfDay", "preferredTime", "slotId",
+            "timeOfDay", "preferredTime", "slotId", "desiredSportQuery",
         )
     )
 
@@ -217,7 +221,7 @@ async def route_booking_flow(
                 state,
             )
 
-    # --- ensure venue is set ------------------------------------------------
+    # --- ensure default booking order starts with sport ---------------------
     if not state.get("venueId"):
         if booking_is_active(state, extraction):
             # When the desired sport is known, only show venues that offer it.
@@ -233,15 +237,17 @@ async def route_booking_flow(
                         },
                         state,
                     )
-            venues = await ensure_venues(api_client)
-            if isinstance(venues, dict) and venues.get("error"):
+
+            sports = await ensure_all_sports(api_client)
+            if isinstance(sports, dict) and sports.get("error"):
                 return (
-                    build_text_reply(str(venues.get("message") or "I couldn't load venues right now.")),
+                    build_text_reply(str(sports.get("message") or "I couldn't load sports right now.")),
                     state,
                 )
-            state["_pendingVenues"] = venues
+            simplified = [{"id": item.get("id"), "name": item.get("name")} for item in sports]
+            state["_pendingSports"] = simplified
             return (
-                {"message": "Pick a venue to get started.", "ui": {"type": "venues", "data": venues}},
+                {"message": "Pick a sport to get started.", "ui": {"type": "sports", "data": simplified}},
                 state,
             )
         return (

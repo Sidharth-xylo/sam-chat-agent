@@ -1,14 +1,14 @@
 const ICONS = {
-  badminton: 'BD',
-  tennis: 'TN',
-  squash: 'SQ',
-  football: 'FB',
-  futsal: 'FB',
-  cricket: 'CR',
-  pickleball: 'PK',
-  table: 'TT',
-  gym: 'GY',
-  default: 'SP',
+  badminton: '🏸',
+  tennis: '🎾',
+  squash: '🎾',
+  football: '⚽',
+  futsal: '⚽',
+  cricket: '🏏',
+  pickleball: '🏓',
+  table: '🏓',
+  gym: '💪',
+  default: '⚽',
 };
 
 function iconFor(name = '') {
